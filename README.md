@@ -565,7 +565,7 @@ This project is for demonstration purposes.
 
 ## 👥 Contributors
 
-Developed by Craftsmen.nl team
+Developed by munwarvh
 
 ---
 
