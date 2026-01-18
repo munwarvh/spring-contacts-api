@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
     <groupId>nl.craftsmen</groupId>
-    <artifactId>contacts</artifactId>
+    <artifactId>spring-contacts-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>contacts</name>
-    <description>contacts</description>
+    <name>spring-contacts-api</name>
+    <description>Spring Boot Reactive REST API for managing contacts with multi-profile support (H2, PostgreSQL), API key authentication, and comprehensive testing</description>
 
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -1,4 +1,4 @@
-# Contacts API
+# Spring Contacts API
 
 A Spring Boot reactive REST API for managing contacts with comprehensive security, multiple environment profiles, and OpenAPI/Swagger documentation.
 
@@ -21,7 +21,9 @@ A Spring Boot reactive REST API for managing contacts with comprehensive securit
 
 ## 📖 Overview
 
-The Contacts API is a reactive Spring Boot application that provides RESTful endpoints for creating, reading, and searching contact information. It features API key authentication, multi-environment support, and comprehensive validation.
+The Spring Contacts API is a reactive Spring Boot application that provides RESTful endpoints for creating, reading, and searching contact information. It features API key authentication, multi-environment support, and comprehensive validation.
+
+**Repository**: https://github.com/munwarvh/spring-contacts-api
 
 ## 🛠 Tech Stack
 
@@ -586,4 +588,3 @@ test-complete.bat
 ```
 
 **Happy Coding! 🎉**
-
