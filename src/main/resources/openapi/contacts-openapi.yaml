@@ -1,0 +1,218 @@
+openapi: 3.0.3
+info:
+  title: Contacts
+  description: This service is responsible for storing and retrieving contact information.
+  version: 2.0.0
+servers:
+  - url: 'http://localhost:8081'
+paths:
+  '/contacts/{id}':
+    get:
+      summary: Returns a contact based on given id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        '404':
+          description: A contact with given id cannot be found.
+  '/contacts':
+    get:
+      summary: |
+        Returns contacts based on the given search criteria (at least one search criteria should be provided).
+        Providing multiple search parameters will narrow the search.
+      parameters:
+        - name: firstname
+          in: query
+          required: false
+          description: Find contacts with provided first name.
+          schema:
+            $ref: '#/components/schemas/firstname'
+        - name: lastname
+          in: query
+          required: false
+          description: Find contacts with provided last name.
+          schema:
+            $ref: '#/components/schemas/lastname'
+        - name: socialsecuritynumber
+          in: query
+          required: false
+          description: Find contacts with provided security number.
+          schema:
+            $ref: '#/components/schemas/socialsecuritynumber'
+        - name: iban
+          in: query
+          required: false
+          description: Find contacts with provided iban.
+          schema:
+            $ref: '#/components/schemas/iban'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contacts'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+    post:
+      summary: 'Stores a contact'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contact'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  responses:
+    UnauthorizedError:
+      description: API key is missing
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
+    ForbiddenError:
+      description: API key is invalid
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
+  schemas:
+    Contacts:
+      type: array
+      items:
+        $ref: '#/components/schemas/Contact'
+    Contact:
+      required:
+        - firstname
+        - lastname
+        - address1
+        - zipcode
+        - city
+        - iban
+        - birth
+      type: object
+      properties:
+        firstname:
+          $ref: '#/components/schemas/firstname'
+        lastname:
+          $ref: '#/components/schemas/lastname'
+        address1:
+          $ref: '#/components/schemas/address'
+        address2:
+          $ref: '#/components/schemas/address'
+        address3:
+          $ref: '#/components/schemas/address'
+        zipcode:
+          $ref: '#/components/schemas/zipcode'
+        city:
+          $ref: '#/components/schemas/city'
+        state:
+          $ref: '#/components/schemas/state'
+        phone:
+          $ref: '#/components/schemas/phone'
+        email:
+          $ref: '#/components/schemas/email'
+        iban:
+          $ref: '#/components/schemas/iban'
+        socialsecuritynumber:
+          $ref: '#/components/schemas/socialsecuritynumber'
+        death:
+          $ref: '#/components/schemas/death'
+        birth:
+          $ref: '#/components/schemas/birth'
+    id:
+      type: integer
+      format: int64
+      example: 100010
+      description: 'The id of the contact'
+    firstname:
+      type: string
+      maxLength: 30
+      example: 'Pete'
+      description: The contact's first name.
+    lastname:
+      type: string
+      maxLength: 30
+      example: 'Peterson'
+      description: The contact's last name.
+    address:
+      type: string
+      maxLength: 30
+      example: '46 Victoria Road'
+      description: The contact's address.
+    zipcode:
+      type: string
+      maxLength: 20
+      example: 'WC91 4XH'
+      description: The contact's zipcode.
+    city:
+      type: string
+      maxLength: 30
+      example: 'London'
+      description: The contact's city.
+    state:
+      type: string
+      maxLength: 30
+      example: 'Westminster'
+      description: The contact's state.
+    phone:
+      type: string
+      maxLength: 25
+      example: '+44 20 7946 0620'
+      description: The contact's phone number.
+    email:
+      type: string
+      maxLength: 50
+      example: 'pete.peterson@hotmail.com'
+      description: The contact's email address.
+    iban:
+      type: string
+      maxLength: 34
+      example: 'GB98MIDL07009312345678'
+      description: The contact's bank account number (IBAN).
+    socialsecuritynumber:
+      type: string
+      maxLength: 25
+      example: '408-03-7262'
+      description: The contact's social security number.
+    death:
+      type: string
+      format: date
+      example: '2018-04-12'
+    birth:
+      type: string
+      format: date
+      example: '1946-11-10'
+security:
+  - ApiKeyAuth: [ ]

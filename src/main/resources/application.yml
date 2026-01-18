@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: local
+  jackson:
+    deserialization:
+      use-long-for-ints: true
+
+logging:
+  level:
+    nl.craftsmen: info
+
+security:
+  apikey: ${CONTACTS_APIKEY:local-test-api-key-12345}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    try-it-out-enabled: true

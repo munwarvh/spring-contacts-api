@@ -1,0 +1,12 @@
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "address1": "123 Main Street",
+  "zipcode": "12345",
+  "city": "Amsterdam",
+  "iban": "NL91ABNA0417164300",
+  "dateOfBirth": "1985-03-15",
+  "email": "john.doe@example.com",
+  "phone": "+31-20-1234567"
+}
+
